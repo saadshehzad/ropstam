@@ -3,10 +3,13 @@ from django.views.generic import TemplateView
 
 from .forms import CategoryForm, ProductForm
 from .models import Category, Product
+from django.contrib.auth.decorators import login_required
 
 
-class HomePageView(TemplateView):
-    template_name = "home.html"
+@login_required
+def home(request):
+    context = {"products": Product.objects.all()}
+    return render(request, "home.html", context)
 
 
 # CRUD for categories
@@ -58,7 +61,6 @@ def delete_category(request, id):
 
 
 # CRUD for products
-
 
 def product_list(request):
     context = {}
