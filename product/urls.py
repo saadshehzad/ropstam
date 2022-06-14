@@ -18,6 +18,7 @@ urlpatterns = [
     path("products/<int:id>/update/", update_product, name="update_product"),
     path("products/<int:id>/delete/", delete_product, name="delete_product"),
     # API URLS
+    path("api/auth/register/", CreateUserView.as_view()),
     path("api/categories/", CategoryListView.as_view()),
     path("api/categories/<int:pk>/", CategoryDetailView.as_view()),
     path("api/products/", ProductListView.as_view()),
