@@ -10,6 +10,8 @@ class HomePageView(TemplateView):
     template_name = "home.html"
 
 
+# CRUD for categories
+
 def category_list(request):
     context = {}
     context["dataset"] = Category.objects.all()
@@ -52,3 +54,48 @@ def delete_category(request, id):
         return redirect("category_list")
  
     return render(request, "delete_category.html", context)
+
+# CRUD for products
+
+def product_list(request):
+    context = {}
+    context["dataset"] = Product.objects.all()
+    return render(request, "product_list.html", context)
+
+def get_product_by_id(request, id):
+    context ={}
+    context["data"] = Product.objects.get(id=id)
+    return render(request, "product_detail.html", context)
+
+ 
+def create_product(request):
+    context ={}
+    form = ProductForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        return redirect("product_list")
+
+    context['form']= form
+    return render(request, "create_product.html", context)
+
+
+def update_product(request, id):
+    context ={}
+    obj = get_object_or_404(Product, id=id)
+    form = ProductForm(request.POST or None, instance=obj)
+    if form.is_valid():
+        form.save()
+        return redirect("product_list")
+
+    context["form"] = form
+    return render(request, "update_product.html", context)
+
+
+def delete_product(request, id):
+    context ={}
+    obj = get_object_or_404(Product, id=id)
+    if request.method =="POST":
+        obj.delete()
+        return redirect("product_list")
+ 
+    return render(request, "delete_product.html", context)
