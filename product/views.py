@@ -60,6 +60,7 @@ def delete_category(request, id):
 
 # CRUD for products
 
+
 def product_list(request):
     context = {}
     context["dataset"] = Product.objects.all()
