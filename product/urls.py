@@ -5,7 +5,7 @@ from api.views import *
 from .views import *
 
 urlpatterns = [
-    path("", HomePageView.as_view(), name="home"),
+    path("", home, name="home"),
     # Category URLS
     path("categories/", category_list, name="category_list"),
     path("create/category/", create_category, name="create_category"),
