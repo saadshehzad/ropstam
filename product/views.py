@@ -3,7 +3,6 @@ from django.views.generic import TemplateView
 
 from .forms import CategoryForm, ProductForm
 from .models import Category, Product
-from django.contrib.auth.decorators import login_required
 
 
 def home(request):
