@@ -6,8 +6,15 @@
     <h1>Homepage</h1>
 
 {% if user.is_authenticated %}
-    Hi {{ user.email }}!
-    <p><a href="{% url 'logout' %}">Log Out</a></p>
+    Hi {{ user.email }}! <br /> <hr>
+        {% for obj in products %}
+            {{obj.category.name}} <br />
+            {{obj.color}} <br />
+            {{obj.model}} <br />
+            {{obj.reg_no}} <br /> <br> <br>
+        {% endfor %}
+        <hr>
+    <p><a href="{% url 'logout' %}">Log Out</a></p> <br />
 {% else %}
     <p>You are not logged in</p>
     <a href="{% url 'login' %}">Log In</a>
