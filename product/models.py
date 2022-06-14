@@ -15,4 +15,4 @@ class Product(TimeStampedModel, models.Model):
     reg_no = models.CharField(max_length=100)
 
     def __str__(self):
-        return self.name
+        return self.category.name
