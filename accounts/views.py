@@ -1,6 +1,6 @@
+from django.core.mail import send_mail
 from django.urls import reverse_lazy
 from django.views import generic
-from django.core.mail import send_mail
 
 from .forms import CustomUserCreationForm
 
@@ -12,9 +12,9 @@ class SignupPageView(generic.CreateView):
 
     def post(self, request, *args, **kwargs):
         send_mail(
-            'Thanks for registring',
-            'Here is the message.',
-            'ropstan@abc.com',
+            "Thanks for registring",
+            "Here is the message.",
+            "ropstan@abc.com",
             [request.user],
             fail_silently=False,
         )
