@@ -6,7 +6,6 @@ from .models import Category, Product
 from django.contrib.auth.decorators import login_required
 
 
-@login_required
 def home(request):
     context = {"products": Product.objects.all()}
     return render(request, "home.html", context)
